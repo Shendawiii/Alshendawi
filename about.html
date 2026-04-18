@@ -248,6 +248,46 @@
       .footer-grid { grid-template-columns:1fr; }
     }
     @media (max-width:500px) { .team-grid { grid-template-columns:1fr; } }
+
+    /* PHASE 1 — Founder's Letter styles */
+    .founder-letter { background: linear-gradient(180deg, var(--off-white) 0%, var(--white) 100%); position: relative; }
+    .founder-letter::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.6'/></svg>");
+      opacity: 0.04; mix-blend-mode: multiply;
+    }
+    .letter-wrap { max-width: 780px; margin: 0 auto; position: relative; z-index: 1; }
+    .letter-head { text-align: center; margin-bottom: 2.5rem; }
+    .letter-head .chapter-num { display: block; font-family: var(--font-head); font-size: 0.9rem; font-style: italic; letter-spacing: 0.28em; color: var(--gold); opacity: 0.8; margin-bottom: 0.75rem; text-transform: uppercase; }
+    .letter-head h2 { font-family: var(--font-head); font-style: italic; font-weight: 400; font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--navy); }
+    .letter-body { font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; line-height: 1.9; color: var(--gray-800); font-weight: 400; }
+    .letter-body p { margin-bottom: 1.25rem; text-indent: 2em; }
+    .letter-body p:first-child { text-indent: 0; }
+    .letter-body p:first-child::first-letter {
+      font-size: 3.5rem; font-weight: 700; color: var(--gold);
+      float: left; line-height: 0.9; padding-right: 0.5rem; padding-top: 0.3rem;
+      font-family: var(--font-head);
+    }
+    .letter-arabic { font-family: var(--font-ar); direction: rtl; text-align: right; font-size: 1.05rem; color: var(--gray-800); margin: 2rem 0; padding: 1.5rem; border-right: 3px solid var(--gold); background: rgba(212,160,23,0.04); border-radius: 0 8px 8px 0; }
+    .letter-signature { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(212,160,23,0.25); text-align: left; }
+    .letter-signature .script {
+      font-family: 'Playfair Display', Georgia, serif; font-style: italic;
+      font-size: 2.2rem; color: var(--navy); margin-bottom: 0.5rem;
+      transform: rotate(-2deg); display: inline-block;
+    }
+    .letter-signature .name { font-family: var(--font-body); font-weight: 700; color: var(--navy); margin-top: 0.75rem; letter-spacing: 0.02em; }
+    .letter-signature .title { font-family: var(--font-head); font-style: italic; color: var(--gold-dark); font-size: 0.9rem; }
+    .letter-signature .place { font-family: var(--font-head); font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gray-600); margin-top: 1rem; opacity: 0.75; }
+    .letter-seal {
+      position: absolute; top: 2rem; right: 2rem; width: 90px; height: 90px;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0.12; pointer-events: none;
+    }
+    .letter-seal img { width: 100%; height: 100%; object-fit: contain; filter: brightness(0) saturate(100%) invert(75%) sepia(80%) saturate(500%) hue-rotate(5deg); }
+    @media (max-width: 768px) {
+      .letter-seal { display: none; }
+      .letter-body { font-size: 1rem; }
+    }
   </style>
 </head>
 <body>
@@ -334,6 +374,40 @@
             <p>Today, our team of certified specialists spans immigration law, international logistics, language services, and business consulting — united by a shared commitment to getting results.</p>
             <div class="ar-quote">شريكك الموثوق في كل خطوة نحو مستقبل أفضل</div>
             <a href="contact.html" class="btn btn-primary">Start Your Journey <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founder's Letter -->
+    <section class="founder-letter section-pad" id="founder-letter">
+      <img src="Alshendawi_Logo.svg" alt="" class="letter-seal" aria-hidden="true">
+      <div class="container">
+        <div class="letter-wrap reveal">
+          <div class="letter-head">
+            <span class="chapter-num">— A Letter from our Founder —</span>
+            <h2>On the meaning of passage.</h2>
+          </div>
+          <div class="letter-body">
+            <p>When I first opened the doors of Alshendawi in 2010, I was a young man who had himself navigated the labyrinth of visas, borders, paperwork, and long silences between stamps. I knew the anxiety of waiting. I knew what it felt like to place your future in the hands of a stranger, in a language not your own, for a decision that could not be appealed.</p>
+
+            <p>I promised myself — and, in time, every client who walked through our doors — that we would be different. That we would treat each file not as a number in a queue, but as a chapter of a life. That we would answer the telephone with the same care whether the matter was urgent or routine. That we would be honest when a door was closed, and resourceful in finding another.</p>
+
+            <p>Fifteen years later, that promise is the only thing that has not changed. Our offices have grown. The nations we serve now number over forty. The languages on our translation desks have multiplied. But the quiet standard — that every passage is personal, every document sacred, every client counseled with discretion — remains our signature.</p>
+
+            <div class="letter-arabic">
+              كل ملفٍ نتلقّاه هو أمانة؛ وكل عميل يأتي إلينا هو فصلٌ من حكاية نشرف بأن نكون جزءًا منها. هذه هي وصيّتنا منذ عام ٢٠١٠، ولن تتغيّر ما بقي في الدار شنداوي.
+            </div>
+
+            <p>If you are considering entrusting your passage to us — whether for a visa, a second citizenship, a translated contract, or a new life abroad — I will say only this: we know what this moment means to you. And for as long as we have the privilege of this work, we will honour it.</p>
+
+            <p>With warm regard,</p>
+          </div>
+          <div class="letter-signature">
+            <div class="script">Mohamed Nasr Alshendawi</div>
+            <div class="name">MOHAMED NASR ALSHENDAWI</div>
+            <div class="title">Founder &amp; Principal Counsel</div>
+            <div class="place">Lance Aux Epines · St. George's · Grenada · MMXXV</div>
           </div>
         </div>
       </div>

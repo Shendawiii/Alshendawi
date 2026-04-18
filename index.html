@@ -922,6 +922,180 @@
       .services-grid { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
     }
+
+    /* ══════════════════════════════════════════════
+       PHASE 1 — LUXURY BRAND SYSTEM
+    ══════════════════════════════════════════════ */
+
+    /* Custom cursor (hidden on touch) */
+    @media (hover: hover) and (pointer: fine) {
+      body { cursor: none; }
+      a, button, .btn, [role="button"], .service-card, .clickable, input, textarea, select, .faq-question, .service-visual, .team-avatar, .testimonial-card { cursor: none; }
+    }
+    .cursor-dot, .cursor-ring {
+      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 10001;
+      transform: translate(-50%, -50%);
+      will-change: transform;
+    }
+    .cursor-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold);
+      transition: opacity 0.2s ease, transform 0.08s linear;
+      box-shadow: 0 0 12px rgba(212,160,23,0.6);
+    }
+    .cursor-ring {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1.5px solid rgba(212,160,23,0.5);
+      transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, background 0.25s ease, opacity 0.2s ease;
+    }
+    .cursor-ring.hover {
+      width: 56px; height: 56px; border-color: var(--gold);
+      background: rgba(212,160,23,0.08);
+    }
+    .cursor-ring.zoom::after {
+      content: 'VIEW'; position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em;
+      color: var(--gold);
+    }
+    @media (hover: none) {
+      .cursor-dot, .cursor-ring { display: none; }
+    }
+
+    /* Paper grain texture — subtle tactile surface */
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9998;
+      opacity: 0.035; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.6'/></svg>");
+    }
+
+    /* Gold-leaf divider — hairline between sections */
+    .gold-divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1.25rem; max-width: 640px; margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+    .gold-divider .line {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+      opacity: 0.55;
+    }
+    .gold-divider .diamond {
+      width: 8px; height: 8px; transform: rotate(45deg);
+      border: 1px solid var(--gold); opacity: 0.7;
+    }
+    .gold-divider .mark {
+      font-family: var(--font-head); font-size: 0.85rem; font-style: italic;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dark);
+      opacity: 0.75;
+    }
+
+    /* Chapter numeral (Roman) */
+    .chapter-num {
+      display: block; font-family: var(--font-head);
+      font-size: 1rem; font-style: italic; letter-spacing: 0.3em;
+      color: var(--gold); opacity: 0.7; margin-bottom: 0.75rem;
+    }
+    .section-header h2 .hero-line { display: block; }
+
+    /* Duotone photograph — auto-brand any img with .duotone */
+    .duotone-wrap { position: relative; overflow: hidden; }
+    .duotone-wrap img { filter: grayscale(1) contrast(1.05) brightness(0.85); transition: filter 0.5s ease; }
+    .duotone-wrap::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(10,22,40,0.85) 0%, rgba(212,160,23,0.35) 100%);
+      mix-blend-mode: screen; pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    .duotone-wrap:hover img { filter: grayscale(0.3) contrast(1.08) brightness(0.95); }
+    .duotone-wrap:hover::after { opacity: 0.75; }
+
+    /* Establishment mark */
+    .estd-mark {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      font-family: var(--font-head); font-style: italic;
+      font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); opacity: 0.85;
+      margin-top: 1.5rem;
+    }
+    .estd-mark::before, .estd-mark::after {
+      content: ''; width: 28px; height: 1px; background: var(--gold); opacity: 0.6;
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      font-family: var(--font-head); font-style: italic;
+      font-size: clamp(1.3rem, 2.5vw, 1.9rem); line-height: 1.4;
+      color: var(--navy); max-width: 780px; margin: 0 auto;
+      text-align: center; position: relative;
+      padding: 0 2rem;
+    }
+    .pull-quote::before, .pull-quote::after {
+      content: '"'; font-size: 3rem; color: var(--gold); opacity: 0.5;
+      position: absolute; font-family: Georgia, serif; line-height: 1;
+    }
+    .pull-quote::before { top: -0.5rem; left: 0; }
+    .pull-quote::after { bottom: -1.5rem; right: 0; }
+
+    /* Clientele band */
+    #clientele {
+      background: var(--navy); color: rgba(255,255,255,0.85);
+      padding: 3rem 0; overflow: hidden; position: relative;
+    }
+    #clientele::before, #clientele::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 140px; z-index: 2; pointer-events: none;
+    }
+    #clientele::before { left: 0; background: linear-gradient(90deg, var(--navy), transparent); }
+    #clientele::after { right: 0; background: linear-gradient(-90deg, var(--navy), transparent); }
+    .clientele-label {
+      text-align: center; font-family: var(--font-head); font-style: italic;
+      font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); opacity: 0.8; margin-bottom: 1.5rem;
+    }
+    .clientele-track {
+      display: flex; gap: 3.5rem; align-items: center;
+      animation: clienteleScroll 40s linear infinite;
+      white-space: nowrap; width: max-content;
+    }
+    .clientele-item {
+      font-family: var(--font-head); font-weight: 400;
+      font-size: 1.15rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.75);
+      display: inline-flex; align-items: center; gap: 3.5rem;
+    }
+    .clientele-item::after {
+      content: '◆'; color: var(--gold); opacity: 0.5; font-size: 0.5rem;
+    }
+    @keyframes clienteleScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* Luxury stat refinement */
+    #stats .record-title {
+      text-align: center; margin-bottom: 2.5rem;
+    }
+    #stats .record-title .chapter-num { color: rgba(255,255,255,0.5); }
+    #stats .record-title h3 {
+      font-family: var(--font-head); color: var(--white);
+      font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    /* Luxury hero polish */
+    .hero-title { letter-spacing: -0.015em; }
+    .hero-title .editorial {
+      display: block; font-style: italic; color: var(--gold);
+      font-weight: 400;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-head); font-style: italic;
+      font-size: 0.85rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); opacity: 0.9; margin-bottom: 1.25rem;
+      display: inline-flex; align-items: center; gap: 0.85rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 32px; height: 1px; background: var(--gold);
+    }
   </style>
 </head>
 <body>
@@ -931,6 +1105,8 @@
 
   <!-- Cursor spotlight -->
   <div class="cursor-glow" id="cursorGlow"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
   <!-- ── Navigation ── -->
   <nav id="navbar">
@@ -971,29 +1147,26 @@
       <div class="container">
         <div class="hero-content">
           <div class="hero-left">
-            <div class="hero-badge">
-              <i class="fas fa-globe"></i>
-              Trusted Worldwide Since 2010
-            </div>
+            <div class="hero-eyebrow">Est. MMX · Grenada</div>
             <h1 class="hero-title">
-              Your Gateway to
-              <span class="accent shimmer-gold">Global Services</span>
+              A private passage
+              <span class="editorial shimmer-gold">to the world.</span>
             </h1>
             <div class="hero-typing-row">
-              <span>We specialize in</span>
+              <span>Counsel on</span>
               <span class="hero-typing-text"></span>
             </div>
             <p class="hero-desc">
-              From visa applications and immigration support to car rentals, apartment assistance, and translation — Alshendawi handles it all with professionalism, speed, and care.
+              For fifteen years, Alshendawi has been a quiet, trusted partner for those navigating visas, citizenship, translation, and global logistics — handled with the care and discretion that matter most.
             </p>
             <div class="hero-ctas">
-              <a href="services.html" class="btn btn-primary">Explore Services <i class="fas fa-arrow-right"></i></a>
-              <a href="contact.html" class="btn btn-outline">Contact Us Today</a>
+              <a href="contact.html" class="btn btn-primary">Request a Consultation <i class="fas fa-arrow-right"></i></a>
+              <a href="services.html" class="btn btn-outline">Our Offerings</a>
             </div>
             <div class="hero-trust">
               <div class="hero-trust-item"><i class="fas fa-shield-halved"></i> Fully Licensed</div>
-              <div class="hero-trust-item"><i class="fas fa-clock"></i> Fast Processing</div>
-              <div class="hero-trust-item"><i class="fas fa-headset"></i> 24/7 Support</div>
+              <div class="hero-trust-item"><i class="fas fa-user-tie"></i> Discreet Counsel</div>
+              <div class="hero-trust-item"><i class="fas fa-globe"></i> 40+ Nations</div>
             </div>
           </div>
           <div class="hero-right">
@@ -1059,34 +1232,48 @@
     <!-- ── Stats ── -->
     <section id="stats">
       <div class="container">
+        <div class="record-title">
+          <span class="chapter-num">— I —</span>
+          <h3>A record of passage</h3>
+        </div>
         <div class="stats-grid">
           <div class="stat-item">
             <span class="stat-number" data-target="15" data-suffix="+">15+</span>
-            <span class="stat-label">Years of Experience</span>
+            <span class="stat-label">Years of Counsel</span>
           </div>
           <div class="stat-item">
             <span class="stat-number" data-target="12" data-suffix="K+">12K+</span>
-            <span class="stat-label">Clients Served</span>
+            <span class="stat-label">Journeys Guided</span>
           </div>
           <div class="stat-item">
             <span class="stat-number" data-target="40" data-suffix="+">40+</span>
-            <span class="stat-label">Countries Covered</span>
+            <span class="stat-label">Nations Served</span>
           </div>
           <div class="stat-item">
-            <span class="stat-number" data-target="8" data-suffix="">8</span>
-            <span class="stat-label">Core Services</span>
+            <span class="stat-number" data-target="98" data-suffix="%">98%</span>
+            <span class="stat-label">Approval Record</span>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Gold-leaf divider -->
+    <div class="gold-divider" aria-hidden="true">
+      <span class="line"></span>
+      <span class="diamond"></span>
+      <span class="mark">Alshendawi · الشنداوي</span>
+      <span class="diamond"></span>
+      <span class="line"></span>
+    </div>
+
     <!-- ── Services Overview ── -->
     <section id="services" class="section-pad">
       <div class="container">
         <div class="section-header reveal">
-          <span class="tag">What We Offer</span>
-          <h2>Comprehensive Global Services</h2>
-          <p>Everything you need to navigate international life — handled by experts who care about your success.</p>
+          <span class="chapter-num">— II —</span>
+          <span class="tag">Our Offerings</span>
+          <h2>Every passage, attended to.</h2>
+          <p>Eight refined services — each handled by specialists who treat your file as their own.</p>
         </div>
         <div class="services-grid">
 
@@ -1220,9 +1407,10 @@
     <section id="testimonials" class="section-pad">
       <div class="container">
         <div class="section-header reveal">
-          <span class="tag">Client Stories</span>
-          <h2>Trusted by Thousands Worldwide</h2>
-          <p>Real experiences from clients who achieved their goals with Alshendawi's support.</p>
+          <span class="chapter-num">— III —</span>
+          <span class="tag">In Their Words</span>
+          <h2>What our clients say, quietly.</h2>
+          <p>Testimonies from those we've had the privilege of serving.</p>
         </div>
         <div class="testimonials-grid">
 
@@ -1266,12 +1454,37 @@
       </div>
     </section>
 
+    <!-- ── Clientele band ── -->
+    <section id="clientele" aria-label="Clientele we serve">
+      <div class="clientele-label">Discreetly serving clientele across</div>
+      <div class="clientele-track">
+        <span class="clientele-item">Private Family Offices</span>
+        <span class="clientele-item">Diplomatic Corps</span>
+        <span class="clientele-item">Global Banking</span>
+        <span class="clientele-item">Creative Industries</span>
+        <span class="clientele-item">International Counsel</span>
+        <span class="clientele-item">Academic Scholars</span>
+        <span class="clientele-item">Executive Leadership</span>
+        <span class="clientele-item">Medical Specialists</span>
+        <!-- duplicate for seamless loop -->
+        <span class="clientele-item">Private Family Offices</span>
+        <span class="clientele-item">Diplomatic Corps</span>
+        <span class="clientele-item">Global Banking</span>
+        <span class="clientele-item">Creative Industries</span>
+        <span class="clientele-item">International Counsel</span>
+        <span class="clientele-item">Academic Scholars</span>
+        <span class="clientele-item">Executive Leadership</span>
+        <span class="clientele-item">Medical Specialists</span>
+      </div>
+    </section>
+
     <!-- ── FAQ ── -->
     <section id="faq" class="section-pad">
       <div class="container">
         <div class="section-header reveal">
-          <span class="tag">FAQ</span>
-          <h2>Frequently Asked Questions</h2>
+          <span class="chapter-num">— IV —</span>
+          <span class="tag">Counsel</span>
+          <h2>Answers, before you ask.</h2>
           <p>Quick answers to common questions about our services.</p>
         </div>
         <div class="faq-list">
@@ -1571,19 +1784,46 @@
         animateParticles();
       }
 
-      // Cursor glow
+      // Cursor glow + custom luxury cursor (dot + ring)
       const glow = document.getElementById('cursorGlow');
-      if (glow && window.matchMedia('(hover: hover)').matches) {
-        let mx = 0, my = 0, gx = 0, gy = 0;
-        document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-        function animateGlow() {
+      const cDot = document.getElementById('cursorDot');
+      const cRing = document.getElementById('cursorRing');
+      if (glow && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        let mx = 0, my = 0, gx = 0, gy = 0, rx = 0, ry = 0;
+        document.addEventListener('mousemove', e => {
+          mx = e.clientX; my = e.clientY;
+          if (cDot) { cDot.style.left = mx + 'px'; cDot.style.top = my + 'px'; }
+        });
+        function animateCursor() {
           gx += (mx - gx) * 0.08;
           gy += (my - gy) * 0.08;
+          rx += (mx - rx) * 0.18;
+          ry += (my - ry) * 0.18;
           glow.style.left = gx + 'px';
           glow.style.top = gy + 'px';
-          requestAnimationFrame(animateGlow);
+          if (cRing) { cRing.style.left = rx + 'px'; cRing.style.top = ry + 'px'; }
+          requestAnimationFrame(animateCursor);
         }
-        animateGlow();
+        animateCursor();
+        // Hover states for interactive elements
+        const hoverSel = 'a, button, .btn, [role="button"], .service-card, .clickable, input, textarea, select, .faq-question, .service-visual, .team-avatar, .testimonial-card, .logo';
+        document.querySelectorAll(hoverSel).forEach(el => {
+          el.addEventListener('mouseenter', () => cRing?.classList.add('hover'));
+          el.addEventListener('mouseleave', () => { cRing?.classList.remove('hover'); cRing?.classList.remove('zoom'); });
+        });
+        document.querySelectorAll('.service-visual, .team-avatar, .story-img-main, img[data-caption]').forEach(el => {
+          el.addEventListener('mouseenter', () => cRing?.classList.add('zoom'));
+          el.addEventListener('mouseleave', () => cRing?.classList.remove('zoom'));
+        });
+        // Hide cursor when leaving window
+        document.addEventListener('mouseleave', () => {
+          if (cDot) cDot.style.opacity = '0';
+          if (cRing) cRing.style.opacity = '0';
+        });
+        document.addEventListener('mouseenter', () => {
+          if (cDot) cDot.style.opacity = '1';
+          if (cRing) cRing.style.opacity = '1';
+        });
       }
 
       // Scroll progress bar

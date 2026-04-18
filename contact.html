@@ -391,7 +391,14 @@
                 <h2>Send Us a Message</h2>
                 <p>Fill in the form below and a specialist will contact you within 2 hours.</p>
 
-                <form id="contactForm" novalidate>
+                <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+                  <!-- Web3Forms: register shendaex@gmail.com at https://web3forms.com/#start, paste the access key below -->
+                  <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                  <input type="hidden" name="subject" value="New Enquiry — Alshendawi Concierge">
+                  <input type="hidden" name="from_name" value="Alshendawi Website">
+                  <input type="hidden" name="redirect" value="false">
+                  <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
+
                   <div class="form-row">
                     <div class="form-group" id="group-firstName">
                       <label for="firstName">First Name *</label>
@@ -627,14 +634,40 @@
         if (!allValid) return;
 
         const submitBtn = form.querySelector('.btn-submit');
+        const originalBtnHTML = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
         submitBtn.disabled = true;
 
-        setTimeout(() => {
-          formContent.style.display = 'none';
-          formSuccess.classList.add('show');
-          spawnConfetti();
-        }, 1500);
+        // Post to Web3Forms → shendaex@gmail.com
+        const data = new FormData(form);
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        })
+        .then(r => r.json())
+        .then(res => {
+          if (res.success) {
+            formContent.style.display = 'none';
+            formSuccess.classList.add('show');
+            spawnConfetti();
+            form.reset();
+          } else {
+            throw new Error(res.message || 'Submission failed');
+          }
+        })
+        .catch(err => {
+          submitBtn.innerHTML = originalBtnHTML;
+          submitBtn.disabled = false;
+          let note = form.querySelector('.form-error-note');
+          if (!note) {
+            note = document.createElement('div');
+            note.className = 'form-error-note';
+            note.style.cssText = 'margin-top:1rem;padding:0.9rem 1rem;border-radius:8px;background:rgba(231,76,60,0.08);border:1px solid rgba(231,76,60,0.3);color:#c0392b;font-size:0.92rem;';
+            submitBtn.parentNode.insertBefore(note, submitBtn.nextSibling);
+          }
+          note.innerHTML = '<i class="fas fa-triangle-exclamation"></i> We could not send your message. Please email <a href="mailto:shendaex@gmail.com" style="color:inherit;text-decoration:underline;">shendaex@gmail.com</a> directly, or try again.';
+        });
       });
     });
   </script>
