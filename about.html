@@ -288,6 +288,130 @@
       .letter-seal { display: none; }
       .letter-body { font-size: 1rem; }
     }
+
+    /* ============ PHASE 3 — EDITORIAL ABOUT ============ */
+    body::before {
+      content:''; position:fixed; inset:0; pointer-events:none; z-index:1;
+      opacity:0.035; mix-blend-mode:multiply;
+      background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
+    }
+
+    /* Chapter numeral (shared) */
+    .chapter-num {
+      display:inline-block; font-family:var(--font-head); font-style:italic;
+      font-size:0.95rem; letter-spacing:0.35em; color:var(--gold);
+      opacity:0.85; margin-bottom:0.8rem;
+    }
+
+    /* Editorial hero eyebrow */
+    .hero-eyebrow-editorial {
+      display:inline-flex; align-items:center; gap:0.9rem;
+      font-family:var(--font-head); font-style:italic;
+      font-size:0.82rem; letter-spacing:0.28em; text-transform:uppercase;
+      color:var(--gold); margin-bottom:1.25rem;
+    }
+    .hero-eyebrow-editorial::before, .hero-eyebrow-editorial::after {
+      content:''; width:36px; height:1px; background:var(--gold); opacity:0.7;
+    }
+    .page-hero h1 .italic-accent { font-style:italic; color:var(--gold); font-weight:400; display:block; }
+    .page-hero p { font-family:var(--font-head); font-style:italic; font-weight:400; font-size:1.2rem; color:rgba(255,255,255,0.82); }
+
+    /* Story editorial refinement */
+    .story-text .tag { background:transparent; color:var(--gold-dark); border:1px solid rgba(212,160,23,0.45); padding:0.3rem 0.95rem; letter-spacing:0.22em; font-size:0.7rem; }
+    .story-text h2 .italic-accent { font-style:italic; color:var(--gold-dark); font-weight:400; display:block; }
+
+    /* ---------- House Creed ---------- */
+    .house-creed {
+      background:var(--navy);
+      position:relative; overflow:hidden;
+      color:var(--white);
+    }
+    .house-creed::after {
+      content:''; position:absolute; inset:0;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(212,160,23,0.06), transparent 45%),
+        radial-gradient(circle at 90% 100%, rgba(212,160,23,0.05), transparent 50%);
+      pointer-events:none;
+    }
+    .creed-head { text-align:center; max-width:760px; margin:0 auto 3.5rem; position:relative; z-index:2; }
+    .creed-head .chapter-num { color:var(--gold); }
+    .creed-head h2 { color:var(--white); font-size:clamp(2rem,4vw,3rem); letter-spacing:-0.01em; }
+    .creed-head h2 em { color:var(--gold); font-weight:400; }
+    .creed-head p { color:rgba(255,255,255,0.72); font-family:var(--font-head); font-style:italic; font-size:1.1rem; margin-top:0.75rem; }
+
+    .creed-grid {
+      display:grid; grid-template-columns:repeat(2, 1fr); gap:0;
+      max-width:1040px; margin:0 auto; position:relative; z-index:2;
+      border-top:1px solid rgba(212,160,23,0.2);
+      border-left:1px solid rgba(212,160,23,0.2);
+    }
+    .creed-item {
+      padding:2.5rem 2rem;
+      border-right:1px solid rgba(212,160,23,0.2);
+      border-bottom:1px solid rgba(212,160,23,0.2);
+      display:flex; flex-direction:column; gap:0.75rem;
+      transition:background 0.4s ease;
+    }
+    .creed-item:hover { background:rgba(212,160,23,0.04); }
+    .creed-num {
+      font-family:var(--font-head); font-style:italic; font-size:1.1rem;
+      letter-spacing:0.25em; color:var(--gold); opacity:0.8;
+    }
+    .creed-title {
+      font-family:var(--font-head); font-size:1.35rem; color:var(--white);
+      font-weight:600; margin:0;
+    }
+    .creed-title em { color:var(--gold); font-weight:400; }
+    .creed-body {
+      font-size:0.95rem; line-height:1.75; color:rgba(255,255,255,0.72);
+    }
+    @media (max-width:720px){ .creed-grid { grid-template-columns:1fr; } }
+
+    /* ---------- Editorial Timeline ---------- */
+    .editorial-timeline {
+      display:flex; flex-direction:column; gap:0;
+      max-width:900px; margin:0 auto;
+      border-top:1px solid rgba(13,33,55,0.1);
+    }
+    .etl-row {
+      display:grid; grid-template-columns:140px 1fr;
+      gap:2.5rem; align-items:start;
+      padding:2.5rem 0;
+      border-bottom:1px solid rgba(13,33,55,0.1);
+      position:relative;
+    }
+    .etl-year {
+      font-family:var(--font-head); font-style:italic;
+      font-size:2.2rem; color:var(--gold); line-height:1;
+    }
+    .etl-year .roman {
+      display:block; font-size:0.75rem; font-style:italic;
+      letter-spacing:0.3em; color:var(--gold-dark); opacity:0.7;
+      margin-top:0.5rem;
+    }
+    .etl-body h4 {
+      font-family:var(--font-head); font-size:1.45rem; font-weight:600;
+      color:var(--navy); margin-bottom:0.6rem; letter-spacing:-0.005em;
+    }
+    .etl-body h4 em { color:var(--gold-dark); font-weight:400; }
+    .etl-body p { font-size:0.98rem; color:var(--gray-600); line-height:1.75; max-width:540px; }
+    .etl-row.present .etl-year { color:var(--navy); }
+    .etl-row.present .etl-year .roman { color:var(--gold); }
+    @media (max-width:640px){
+      .etl-row { grid-template-columns:1fr; gap:0.75rem; padding:2rem 0; }
+      .etl-year { font-size:1.8rem; }
+    }
+
+    /* ---------- Team credos ---------- */
+    .team-credo {
+      font-family:var(--font-head); font-style:italic;
+      font-size:0.95rem; color:var(--gold-dark);
+      line-height:1.55; margin-top:0.65rem;
+      padding-top:0.65rem; border-top:1px solid rgba(212,160,23,0.2);
+      max-width:240px; margin-left:auto; margin-right:auto;
+    }
+    .team-credo::before { content:'“'; color:var(--gold); }
+    .team-credo::after { content:'”'; color:var(--gold); }
   </style>
 </head>
 <body>
@@ -335,8 +459,9 @@
             <span>/</span>
             <span class="current">About Us</span>
           </div>
-          <h1>About Alshendawi</h1>
-          <p>A legacy of trust, built on 15+ years of connecting people with opportunities across the globe.</p>
+          <div class="hero-eyebrow-editorial">The House · Est. MMX</div>
+          <h1>A quiet house, <span class="italic-accent">keeping its word.</span></h1>
+          <p>Fifteen years of counsel — signed by hand, delivered with care, across forty nations.</p>
         </div>
       </div>
     </section>
@@ -367,8 +492,9 @@
             </div>
           </div>
           <div class="story-text reveal reveal-delay-2">
+            <span class="chapter-num">— The Origin —</span>
             <span class="tag">Our Story</span>
-            <h2>From a Vision to a Global Presence</h2>
+            <h2>A single desk in 2010. <span class="italic-accent">Forty nations today.</span></h2>
             <p>Alshendawi was founded in 2010 with a simple but powerful mission: to make international services accessible, transparent, and stress-free for everyone. What began as a small consultancy has grown into a full-service global agency trusted by thousands of individuals and businesses across 40+ countries.</p>
             <p>Our founder, driven by personal experience navigating complex immigration and logistics challenges, built Alshendawi to be the partner he never had — one that combines deep expertise with genuine care for every client's outcome.</p>
             <p>Today, our team of certified specialists spans immigration law, international logistics, language services, and business consulting — united by a shared commitment to getting results.</p>
@@ -413,67 +539,61 @@
       </div>
     </section>
 
-    <!-- Timeline -->
+    <!-- Editorial Timeline -->
     <section class="section-pad" style="background:var(--off-white);">
       <div class="container">
-        <div class="section-header reveal">
-          <span class="tag">Our Journey</span>
-          <h2>15 Years of Milestones</h2>
-          <p>From a small consultancy to a global agency — here's how we grew.</p>
+        <div class="section-header reveal" style="text-align:center;max-width:720px;margin:0 auto 3rem;">
+          <span class="chapter-num">— The Chronicle —</span>
+          <h2>Fifteen years, <em style="color:var(--gold-dark);font-weight:400;">entered in the ledger.</em></h2>
+          <p style="font-family:var(--font-head);font-style:italic;color:var(--gray-600);font-size:1.1rem;margin-top:0.75rem;">A record kept honestly — the doors we opened, the ones we still intend to.</p>
         </div>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-content timeline-left reveal">
-              <div class="timeline-year">2010</div>
-              <h4>Founded</h4>
-              <p>Alshendawi opens its doors as a boutique immigration consultancy with a team of three specialists.</p>
-            </div>
-            <div class="timeline-dot">2010</div>
-            <div class="timeline-spacer"></div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-spacer"></div>
-            <div class="timeline-dot">2013</div>
-            <div class="timeline-content reveal reveal-delay-1">
-              <div class="timeline-year">2013</div>
-              <h4>Translation Division Launched</h4>
-              <p>Expanding into certified translation services, covering 20+ language pairs across legal and academic sectors.</p>
+
+        <div class="editorial-timeline reveal">
+          <div class="etl-row">
+            <div class="etl-year">MMX<span class="roman">2010 · Chapter I</span></div>
+            <div class="etl-body">
+              <h4>The first desk, <em>in a single room.</em></h4>
+              <p>Alshendawi opens as a boutique immigration practice — three counsels, one telephone, and a promise that every file would be answered by name.</p>
             </div>
           </div>
-          <div class="timeline-item">
-            <div class="timeline-content timeline-left reveal">
-              <div class="timeline-year">2016</div>
-              <h4>Global Logistics Arm Added</h4>
-              <p>Import &amp; export services introduced, serving trade clients across the MENA region and Europe.</p>
-            </div>
-            <div class="timeline-dot">2016</div>
-            <div class="timeline-spacer"></div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-spacer"></div>
-            <div class="timeline-dot">2019</div>
-            <div class="timeline-content reveal reveal-delay-1">
-              <div class="timeline-year">2019</div>
-              <h4>10,000 Clients Milestone</h4>
-              <p>A defining moment — we celebrated serving our 10,000th client with a 97%+ satisfaction rate.</p>
+
+          <div class="etl-row">
+            <div class="etl-year">MMXIII<span class="roman">2013 · Chapter II</span></div>
+            <div class="etl-body">
+              <h4>The translation desk, <em>twenty tongues deep.</em></h4>
+              <p>A certified translation division joins the house — legal, academic, and civil documents now handled in-house across more than twenty language pairs.</p>
             </div>
           </div>
-          <div class="timeline-item">
-            <div class="timeline-content timeline-left reveal">
-              <div class="timeline-year">2022</div>
-              <h4>Career &amp; Rental Services</h4>
-              <p>Job application support, apartment rental assistance, and car rental added to round out our global offering.</p>
+
+          <div class="etl-row">
+            <div class="etl-year">MMXVI<span class="roman">2016 · Chapter III</span></div>
+            <div class="etl-body">
+              <h4>Cargo, <em>quietly moving.</em></h4>
+              <p>Import and export counsel is added, serving trade clients from the Gulf to the Mediterranean, and onward into Europe. A quieter, more complex kind of passage.</p>
             </div>
-            <div class="timeline-dot">2022</div>
-            <div class="timeline-spacer"></div>
           </div>
-          <div class="timeline-item">
-            <div class="timeline-spacer"></div>
-            <div class="timeline-dot" style="background:var(--navy);color:var(--gold);">Now</div>
-            <div class="timeline-content reveal reveal-delay-1">
-              <div class="timeline-year">Today</div>
-              <h4>40+ Countries, 12K+ Clients</h4>
-              <p>A full-service global consultancy, proudly partnering with individuals and businesses on every continent.</p>
+
+          <div class="etl-row">
+            <div class="etl-year">MMXIX<span class="roman">2019 · Chapter IV</span></div>
+            <div class="etl-body">
+              <h4>The ten-thousandth file.</h4>
+              <p>A decade in, we opened the ten-thousandth client file — and marked it no differently than the first. Discretion, precision, and a handwritten note of thanks.</p>
+            </div>
+          </div>
+
+          <div class="etl-row">
+            <div class="etl-year">MMXXII<span class="roman">2022 · Chapter V</span></div>
+            <div class="etl-body">
+              <h4>The household <em>grows quietly.</em></h4>
+              <p>Career counsel, residency, apartment and vehicle arrangements join the portfolio — rounding the house into a true concierge for the internationally mobile.</p>
+            </div>
+          </div>
+
+          <div class="etl-row present">
+            <div class="etl-year">MMXXV<span class="roman">Today · The Present</span></div>
+            <div class="etl-body">
+              <h4>Forty nations, <em>one standard.</em></h4>
+              <p>A private practice serving individuals and houses across six continents — still answered within the hour, still signed by hand, still held to the creed of 2010.</p>
             </div>
           </div>
         </div>
@@ -502,44 +622,44 @@
       </div>
     </section>
 
-    <!-- Core Values -->
-    <section id="values" class="section-pad">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="tag">What We Stand For</span>
-          <h2>Our Core Values</h2>
-          <p>Every decision we make is guided by a set of principles that put our clients first.</p>
+    <!-- The House Creed -->
+    <section id="values" class="house-creed section-pad">
+      <div class="container" style="position:relative;z-index:2;">
+        <div class="creed-head reveal">
+          <span class="chapter-num">— The House Creed —</span>
+          <h2>Six promises, <em>quietly kept.</em></h2>
+          <p>Not a list of values. A standard we measure ourselves against, every file, every week.</p>
         </div>
-        <div class="values-grid">
-          <div class="value-card reveal reveal-delay-1">
-            <div class="value-num">01</div>
-            <h3>Integrity</h3>
-            <p>We are honest, transparent, and ethical in everything we do. Clients receive clear information, realistic expectations, and no hidden costs.</p>
+        <div class="creed-grid reveal">
+          <div class="creed-item">
+            <span class="creed-num">I.</span>
+            <h3 class="creed-title">Honesty <em>before optimism.</em></h3>
+            <p class="creed-body">If a door is closed, we say so. No fees for hope, no counsel against the odds. The truth, offered early, is the most valuable service we provide.</p>
           </div>
-          <div class="value-card reveal reveal-delay-2">
-            <div class="value-num">02</div>
-            <h3>Excellence</h3>
-            <p>We hold ourselves to the highest professional standards. Every document, application, and translation is reviewed for quality before it leaves our hands.</p>
+          <div class="creed-item">
+            <span class="creed-num">II.</span>
+            <h3 class="creed-title">The file, <em>never a queue.</em></h3>
+            <p class="creed-body">Every client receives a named counsel, a direct line, and a file handled as if it were the only one on the desk. Because on the day it matters, it is.</p>
           </div>
-          <div class="value-card reveal reveal-delay-3">
-            <div class="value-num">03</div>
-            <h3>Client-First</h3>
-            <p>Your success is our success. We tailor every service to your unique circumstances and never apply a one-size-fits-all approach.</p>
+          <div class="creed-item">
+            <span class="creed-num">III.</span>
+            <h3 class="creed-title">Discretion, <em>as a service.</em></h3>
+            <p class="creed-body">What passes through our doors stays within them. We speak of clients only by their outcomes — and only when permission is given.</p>
           </div>
-          <div class="value-card reveal reveal-delay-1">
-            <div class="value-num">04</div>
-            <h3>Speed &amp; Efficiency</h3>
-            <p>We respect your time. Our streamlined processes and expert team ensure your cases are handled swiftly without sacrificing accuracy.</p>
+          <div class="creed-item">
+            <span class="creed-num">IV.</span>
+            <h3 class="creed-title">Precision <em>over speed.</em></h3>
+            <p class="creed-body">A translation, a visa file, a contract — reviewed twice before it leaves our hands. Rushed work is someone else's standard, not ours.</p>
           </div>
-          <div class="value-card reveal reveal-delay-2">
-            <div class="value-num">05</div>
-            <h3>Confidentiality</h3>
-            <p>Your personal and financial information is protected with bank-level security protocols. We never share client data with third parties.</p>
+          <div class="creed-item">
+            <span class="creed-num">V.</span>
+            <h3 class="creed-title">Answered <em>within the hour.</em></h3>
+            <p class="creed-body">No voicemail labyrinths. No ticket queues. A human reply — in your language — within business hours, every time.</p>
           </div>
-          <div class="value-card reveal reveal-delay-3">
-            <div class="value-num">06</div>
-            <h3>Global Reach</h3>
-            <p>With partners and expertise in 40+ countries, we bring local knowledge and global connections to every engagement.</p>
+          <div class="creed-item">
+            <span class="creed-num">VI.</span>
+            <h3 class="creed-title">Local hands, <em>global reach.</em></h3>
+            <p class="creed-body">Forty-plus nations. Trusted counsel on the ground in each. We never send a file somewhere our people have not already walked.</p>
           </div>
         </div>
       </div>
@@ -548,10 +668,10 @@
     <!-- Team -->
     <section class="section-pad">
       <div class="container">
-        <div class="section-header reveal">
-          <span class="tag">The People Behind It</span>
-          <h2>Meet Our Expert Team</h2>
-          <p>Certified specialists dedicated to delivering results for every client.</p>
+        <div class="section-header reveal" style="text-align:center;max-width:720px;margin:0 auto 3rem;">
+          <span class="chapter-num">— The Household —</span>
+          <h2>The counsels <em style="color:var(--gold-dark);font-weight:400;">behind every file.</em></h2>
+          <p style="font-family:var(--font-head);font-style:italic;color:var(--gray-600);font-size:1.1rem;margin-top:0.75rem;">Certified specialists, trusted by name — each answering to a single standard.</p>
         </div>
         <div class="team-grid">
           <div class="team-card reveal reveal-delay-1">
@@ -559,32 +679,36 @@
               <div class="team-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Mohamed Nasr Alshendawi" data-caption="Mohamed Nasr Alshendawi — Founder &amp; CEO"></div>
             </div>
             <h4>Mohamed Nasr Alshendawi</h4>
-            <div class="role">Founder &amp; CEO</div>
-            <p>15+ years in international consultancy. Expert in immigration law and global logistics.</p>
+            <div class="role">Founder &amp; Principal Counsel</div>
+            <p>Fifteen years in international practice. Trusted on visas, citizenship, and global logistics.</p>
+            <div class="team-credo">A file is a life — treat it as such.</div>
           </div>
           <div class="team-card reveal reveal-delay-2">
             <div class="team-avatar-wrap">
               <div class="team-avatar"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="Layla Karim" data-caption="Layla Karim — Head of Visa Services"></div>
             </div>
             <h4>Layla Karim</h4>
-            <div class="role">Head of Visa Services</div>
-            <p>Certified immigration specialist with a 98% visa approval record across 30+ countries.</p>
+            <div class="role">Head of Visa Counsel</div>
+            <p>Certified immigration specialist. A 98% approval record across thirty-plus nations.</p>
+            <div class="team-credo">Every door has a key — patience finds it.</div>
           </div>
           <div class="team-card reveal reveal-delay-3">
             <div class="team-avatar-wrap">
               <div class="team-avatar"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" alt="Noor Farouk" data-caption="Noor Farouk — Translation Director"></div>
             </div>
             <h4>Noor Farouk</h4>
-            <div class="role">Translation Director</div>
-            <p>Professional linguist fluent in Arabic, English, French, and German. Certified by ATA.</p>
+            <div class="role">Director of Translation</div>
+            <p>ATA-certified linguist. Fluent in Arabic, English, French, and German.</p>
+            <div class="team-credo">Nothing meaningful is ever lost in translation.</div>
           </div>
           <div class="team-card reveal reveal-delay-1">
             <div class="team-avatar-wrap">
               <div class="team-avatar"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" alt="Yusuf Salim" data-caption="Yusuf Salim — Logistics &amp; Trade Manager"></div>
             </div>
             <h4>Yusuf Salim</h4>
-            <div class="role">Logistics &amp; Trade Manager</div>
-            <p>Decade of experience in import/export operations across MENA, Europe, and North America.</p>
+            <div class="role">Counsel, Logistics &amp; Trade</div>
+            <p>A decade guiding import/export across the MENA region, Europe, and the Americas.</p>
+            <div class="team-credo">Borders were drawn for nations — cargo need not notice.</div>
           </div>
         </div>
       </div>
