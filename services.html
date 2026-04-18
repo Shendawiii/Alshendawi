@@ -98,25 +98,44 @@
     .service-visual {
       border-radius:var(--radius-lg); overflow:hidden;
       background:linear-gradient(135deg, var(--navy), var(--navy-light));
-      height:380px; display:flex; align-items:center; justify-content:center;
-      flex-direction:column; gap:1rem; position:relative;
-      will-change:transform;
+      height:420px; position:relative;
+      will-change:transform; cursor:zoom-in;
     }
-    .service-visual i { font-size:5rem; color:rgba(201,162,39,0.25); transition:transform 0.4s ease, color 0.3s ease; }
-    .service-visual:hover i { color:rgba(201,162,39,0.45); transform:scale(1.1) rotate(-8deg); }
-    .service-visual .placeholder-label { font-size:0.85rem; color:rgba(255,255,255,0.3); }
+    .service-visual > i { display:none; }
+    .service-visual img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform 0.7s ease; }
+    .service-visual:hover img { transform:scale(1.08); }
+    .service-visual::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(10,22,40,0.55) 0%, rgba(29,58,98,0.35) 60%, rgba(10,22,40,0.65) 100%); z-index:1; transition:opacity 0.3s; }
+    .service-visual:hover::before { opacity:0.7; }
     .service-visual .service-badge {
-      position:absolute; top:1.5rem; left:1.5rem;
+      position:absolute; top:1.5rem; left:1.5rem; z-index:3;
       background:var(--gold); color:var(--navy); font-size:0.78rem; font-weight:700;
-      padding:0.35rem 0.85rem; border-radius:50px;
+      padding:0.4rem 0.9rem; border-radius:50px; box-shadow:0 4px 14px rgba(0,0,0,0.25);
     }
-    /* Glow on service visual hover */
-    .service-visual::after {
-      content:''; position:absolute; inset:0;
-      background:radial-gradient(circle at 50% 50%, rgba(201,162,39,0.08), transparent 70%);
-      opacity:0; transition:opacity 0.4s ease;
+    .service-visual .visual-icon {
+      position:absolute; bottom:1.25rem; right:1.25rem; z-index:3;
+      width:58px; height:58px; background:var(--gold); color:var(--navy);
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+      font-size:1.4rem; box-shadow:0 10px 30px rgba(0,0,0,0.35);
+      transition:transform 0.4s ease;
     }
-    .service-visual:hover::after { opacity:1; }
+    .service-visual:hover .visual-icon { transform:scale(1.1) rotate(-8deg); }
+    .service-visual .zoom-hint {
+      position:absolute; top:1.5rem; right:1.5rem; z-index:3;
+      width:40px; height:40px; background:rgba(255,255,255,0.15); backdrop-filter:blur(8px);
+      border:1px solid rgba(255,255,255,0.25); border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      color:white; font-size:0.85rem; opacity:0; transition:opacity 0.3s ease;
+    }
+    .service-visual:hover .zoom-hint { opacity:1; }
+
+    /* Lightbox extension */
+    .lightbox { position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:10000; display:none; align-items:center; justify-content:center; padding:2rem; backdrop-filter:blur(12px); opacity:0; transition:opacity 0.3s ease; }
+    .lightbox.open { display:flex; opacity:1; }
+    .lightbox-img { max-width:92%; max-height:82vh; border-radius:14px; box-shadow:0 40px 100px rgba(0,0,0,0.7); transform:scale(0.9); transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+    .lightbox.open .lightbox-img { transform:scale(1); }
+    .lightbox-close { position:absolute; top:1.5rem; right:1.5rem; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:white; width:48px; height:48px; border-radius:50%; font-size:1.5rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s, transform 0.2s; }
+    .lightbox-close:hover { background:var(--gold); color:var(--navy); transform:rotate(90deg); }
+    .lightbox-caption { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); color:white; font-size:0.95rem; opacity:0.9; padding:0.6rem 1.2rem; background:rgba(0,0,0,0.4); border-radius:50px; backdrop-filter:blur(6px); max-width:85%; text-align:center; }
 
     .service-info h2 { margin-bottom:1rem; }
     .service-info > p { font-size:1.05rem; margin-bottom:1.75rem; }
@@ -246,8 +265,9 @@
         <div class="service-layout">
           <div class="service-visual reveal">
             <div class="service-badge">Global Trade</div>
-            <i class="fas fa-ship"></i>
-            <span class="placeholder-label">[Import / Export Illustration]</span>
+            <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1400&q=80" alt="Cargo containers at an international port" data-caption="Import & Export — global shipping and customs">
+            <div class="zoom-hint"><i class="fas fa-expand"></i></div>
+            <div class="visual-icon"><i class="fas fa-ship"></i></div>
           </div>
           <div class="service-info reveal reveal-delay-1">
             <span class="tag">Trade &amp; Logistics</span>
@@ -294,8 +314,9 @@
           </div>
           <div class="service-visual reveal reveal-delay-1">
             <div class="service-badge">Wide Fleet</div>
-            <i class="fas fa-car-side"></i>
-            <span class="placeholder-label">[Car Fleet Image]</span>
+            <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1400&q=80" alt="Luxury car rental fleet" data-caption="Car Rental — premium fleet for every journey">
+            <div class="zoom-hint"><i class="fas fa-expand"></i></div>
+            <div class="visual-icon"><i class="fas fa-car-side"></i></div>
           </div>
         </div>
       </div>
@@ -307,8 +328,9 @@
         <div class="service-layout">
           <div class="service-visual reveal">
             <div class="service-badge">Housing</div>
-            <i class="fas fa-building"></i>
-            <span class="placeholder-label">[Apartment Image]</span>
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1400&q=80" alt="Modern apartment living room" data-caption="Apartment Rental — fully-serviced homes worldwide">
+            <div class="zoom-hint"><i class="fas fa-expand"></i></div>
+            <div class="visual-icon"><i class="fas fa-building"></i></div>
           </div>
           <div class="service-info reveal reveal-delay-1">
             <span class="tag">Relocation</span>
@@ -366,7 +388,9 @@
           <div class="service-visual reveal reveal-delay-1">
             <div class="service-badge">98% Approval Rate</div>
             <i class="fas fa-passport"></i>
-            <span class="placeholder-label">[Visa Services Image]</span>
+            <img src="https://images.unsplash.com/photo-1569098644584-210bcd375b59?w=1400&q=80" alt="Passport and boarding pass" data-caption="Visa Services — tourist, work, study, business">
+            <div class="zoom-hint"><i class="fas fa-expand"></i></div>
+            <div class="visual-icon"><i class="fas fa-passport"></i></div>
           </div>
         </div>
       </div>
@@ -379,7 +403,9 @@
           <div class="service-visual reveal">
             <div class="service-badge">Residency &amp; Citizenship</div>
             <i class="fas fa-id-card"></i>
-            <span class="placeholder-label">[Citizenship Image]</span>
+            <img src="https://images.unsplash.com/photo-1544198365-f5d60b6d8190?w=1400&q=80" alt="Passports and documents" data-caption="Citizenship — second passports &amp; residency programs">
+            <div class="zoom-hint"><i class="fas fa-expand"></i></div>
+            <div class="visual-icon"><i class="fas fa-id-card"></i></div>
           </div>
           <div class="service-info reveal reveal-delay-1">
             <span class="tag">Immigration</span>
@@ -428,7 +454,9 @@
           <div class="service-visual reveal reveal-delay-1">
             <div class="service-badge">From 48 Hours</div>
             <i class="fas fa-pen-nib"></i>
-            <span class="placeholder-label">[Writing Services Image]</span>
+            <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1400&q=80" alt="Writing a personal statement" data-caption="Personal Statements — professionally crafted">
+            <div class="zoom-hint"><i class="fas fa-expand"></i></div>
+            <div class="visual-icon"><i class="fas fa-pen-nib"></i></div>
           </div>
         </div>
       </div>
@@ -441,7 +469,9 @@
           <div class="service-visual reveal">
             <div class="service-badge">Career Services</div>
             <i class="fas fa-briefcase"></i>
-            <span class="placeholder-label">[Job Application Image]</span>
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1400&q=80" alt="Business professionals in a meeting" data-caption="Job Applications — CVs, cover letters, interview prep">
+            <div class="zoom-hint"><i class="fas fa-expand"></i></div>
+            <div class="visual-icon"><i class="fas fa-briefcase"></i></div>
           </div>
           <div class="service-info reveal reveal-delay-1">
             <span class="tag">Career</span>
@@ -490,7 +520,9 @@
           <div class="service-visual reveal reveal-delay-1">
             <div class="service-badge">50+ Languages</div>
             <i class="fas fa-language"></i>
-            <span class="placeholder-label">[Translation Services Image]</span>
+            <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1400&q=80" alt="Multilingual books and documents" data-caption="Translation — 50+ languages, certified">
+            <div class="zoom-hint"><i class="fas fa-expand"></i></div>
+            <div class="visual-icon"><i class="fas fa-language"></i></div>
           </div>
         </div>
       </div>
@@ -561,7 +593,42 @@
     </div>
   </footer>
 
+  <!-- Lightbox extension -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer">&times;</button>
+    <img class="lightbox-img" id="lightboxImg" alt="">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Lightbox
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightboxImg');
+      const lbCap = document.getElementById('lightboxCaption');
+      const lbClose = document.getElementById('lightboxClose');
+      function openLightbox(src, caption) {
+        lbImg.src = src;
+        lbCap.textContent = caption || '';
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLightbox() {
+        lb.classList.remove('open');
+        lb.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        setTimeout(() => { lbImg.src = ''; }, 300);
+      }
+      document.querySelectorAll('.service-visual img').forEach(img => {
+        img.closest('.service-visual').addEventListener('click', () => {
+          openLightbox(img.src, img.dataset.caption || img.alt);
+        });
+      });
+      lbClose.addEventListener('click', closeLightbox);
+      lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('open')) closeLightbox(); });
+    });
     document.addEventListener('DOMContentLoaded', () => {
       const hamburger = document.getElementById('hamburger');
       const mobileMenu = document.getElementById('mobileMenu');
