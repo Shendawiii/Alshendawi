@@ -192,6 +192,86 @@
       .hamburger { display:flex; }
       .footer-grid { grid-template-columns:1fr; }
     }
+
+    /* ============ PHASE 2 — EDITORIAL DOSSIER ============ */
+    /* Paper-grain texture across the services page */
+    body::before {
+      content:''; position:fixed; inset:0; pointer-events:none; z-index:1;
+      opacity:0.035; mix-blend-mode:multiply;
+      background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
+    }
+
+    /* Editorial hero eyebrow */
+    .hero-eyebrow-editorial {
+      display:inline-flex; align-items:center; gap:0.9rem;
+      font-family:var(--font-head); font-style:italic;
+      font-size:0.82rem; letter-spacing:0.28em; text-transform:uppercase;
+      color:var(--gold); margin-bottom:1.25rem;
+    }
+    .hero-eyebrow-editorial::before, .hero-eyebrow-editorial::after {
+      content:''; width:36px; height:1px; background:var(--gold); opacity:0.7;
+    }
+    .page-hero h1 .italic-accent { font-style:italic; color:var(--gold); font-weight:400; display:block; }
+
+    /* Chapter numeral marker (I, II, III…) */
+    .chapter-num {
+      display:inline-block; font-family:var(--font-head); font-style:italic;
+      font-size:0.95rem; letter-spacing:0.35em; color:var(--gold);
+      opacity:0.85; margin-bottom:0.8rem;
+    }
+    .service-italic-sub {
+      display:block; font-family:var(--font-head); font-style:italic;
+      font-weight:400; font-size:1.15rem; color:var(--gold-dark);
+      margin:-0.25rem 0 1.25rem; letter-spacing:0.01em;
+    }
+
+    /* Pull-quote block inside each dossier */
+    .service-pullquote {
+      border-left:3px solid var(--gold);
+      padding:0.25rem 0 0.25rem 1.25rem;
+      margin:0 0 1.75rem; font-family:var(--font-head); font-style:italic;
+      font-size:1.1rem; color:var(--navy); line-height:1.55;
+    }
+    .service-pullquote::before { content:'“'; color:var(--gold); font-size:2rem; line-height:0; position:relative; top:0.4rem; margin-right:0.25rem; }
+    .service-pullquote::after  { content:'”'; color:var(--gold); font-size:2rem; line-height:0; position:relative; top:0.4rem; margin-left:0.1rem; }
+
+    /* Dossier tag — refined pill */
+    .service-info .tag {
+      background:transparent; color:var(--gold-dark);
+      border:1px solid rgba(212,160,23,0.45);
+      padding:0.3rem 0.95rem; letter-spacing:0.22em; font-size:0.7rem;
+    }
+
+    /* Gold-leaf mini divider used between sections */
+    .svc-divider {
+      display:flex; align-items:center; justify-content:center; gap:1rem;
+      max-width:520px; margin:0 auto; padding:1.5rem 1rem 0;
+    }
+    .svc-divider .line { flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+    .svc-divider .diamond { width:6px; height:6px; transform:rotate(45deg); border:1px solid var(--gold); }
+
+    /* Refined CTAs — primary gets arrow treatment */
+    .service-ctas .btn-primary { padding:0.95rem 2.2rem; letter-spacing:0.02em; }
+    .service-ctas .btn-primary i { transition:transform 0.35s ease; }
+    .service-ctas .btn-primary:hover i { transform:translateX(4px); }
+
+    /* Service visual — add editorial frame */
+    .service-visual { border-radius:6px; box-shadow:0 30px 80px -30px rgba(10,22,40,0.45); }
+    .service-visual::after {
+      content:''; position:absolute; inset:14px; border:1px solid rgba(255,255,255,0.15);
+      pointer-events:none; z-index:2; border-radius:4px;
+    }
+    .service-visual .service-badge {
+      font-family:var(--font-head); font-style:italic; letter-spacing:0.2em;
+      text-transform:uppercase; font-size:0.7rem;
+    }
+
+    /* Hide orphaned original <i> inside service-visual (kept from Phase 1) */
+    .service-visual > i { display:none; }
+
+    /* Page-hero editorial refinements */
+    .page-hero h1 { letter-spacing:-0.01em; }
+    .page-hero p { font-family:var(--font-head); font-style:italic; font-weight:400; font-size:1.2rem; color:rgba(255,255,255,0.82); }
   </style>
 </head>
 <body>
@@ -234,10 +314,11 @@
       <div class="container">
         <div class="page-hero-content">
           <div class="breadcrumb">
-            <a href="index.html">Home</a><span>/</span><span class="current">Services</span>
+            <a href="index.html">Home</a><span>/</span><span class="current">The Dossier</span>
           </div>
-          <h1>Our Services</h1>
-          <p>Eight specialised services designed to open doors, remove barriers, and move your life or business forward — globally.</p>
+          <div class="hero-eyebrow-editorial">The Dossier · Est. MMX</div>
+          <h1>Eight quiet offerings, <span class="italic-accent">attended with care.</span></h1>
+          <p>A private catalogue of the counsel we provide — from trade and residency to translation and the written word.</p>
         </div>
       </div>
     </section>
@@ -270,9 +351,12 @@
             <div class="visual-icon"><i class="fas fa-ship"></i></div>
           </div>
           <div class="service-info reveal reveal-delay-1">
+            <span class="chapter-num">— I —</span>
             <span class="tag">Trade &amp; Logistics</span>
-            <h2>Import &amp; Export Services</h2>
+            <h2>Import &amp; Export</h2>
+            <em class="service-italic-sub">The movement of things, quietly arranged.</em>
             <p>We handle the full lifecycle of international trade — from sourcing suppliers and negotiating contracts to customs clearance, freight forwarding, and last-mile delivery.</p>
+            <blockquote class="service-pullquote">Borders were drawn for nations; cargo need not notice them.</blockquote>
             <ul class="features-list">
               <li>Customs documentation and clearance</li>
               <li>Freight forwarding (sea, air, land)</li>
@@ -296,9 +380,12 @@
       <div class="container">
         <div class="service-layout">
           <div class="service-info reveal">
+            <span class="chapter-num">— II —</span>
             <span class="tag">Mobility</span>
-            <h2>Car Rental Services</h2>
+            <h2>Car Rental</h2>
+            <em class="service-italic-sub">Wheels, ready when you are.</em>
             <p>A flexible, affordable fleet for every journey. Whether you need a compact city car for a weekend, a luxury sedan for a corporate event, or a long-term lease for an extended stay abroad.</p>
+            <blockquote class="service-pullquote">The right vehicle turns a commute into a chapter of the journey.</blockquote>
             <ul class="features-list">
               <li>Economy, standard, SUV, and luxury vehicles</li>
               <li>Daily, weekly, and monthly rental plans</li>
@@ -333,9 +420,12 @@
             <div class="visual-icon"><i class="fas fa-building"></i></div>
           </div>
           <div class="service-info reveal reveal-delay-1">
+            <span class="chapter-num">— III —</span>
             <span class="tag">Relocation</span>
-            <h2>Apartment Rental Assistance</h2>
+            <h2>A Home, Abroad</h2>
+            <em class="service-italic-sub">Keys, handed over. Doors already open.</em>
             <p>Relocating abroad is stressful enough without having to navigate a foreign housing market. Our team acts as your trusted local representative — searching, vetting, and securing accommodation before you even arrive.</p>
+            <blockquote class="service-pullquote">A foreign city feels kinder when someone has already found you a door to close behind you.</blockquote>
             <ul class="features-list">
               <li>Personalised property search in your destination city</li>
               <li>Virtual and in-person viewing coordination</li>
@@ -359,9 +449,12 @@
       <div class="container">
         <div class="service-layout">
           <div class="service-info reveal">
+            <span class="chapter-num">— IV —</span>
             <span class="tag">Immigration</span>
-            <h2>Visa Application Services</h2>
+            <h2>The Visa File</h2>
+            <em class="service-italic-sub">A 98% approval record, prepared with precision.</em>
             <p>Our certified immigration consultants handle every type of visa — tourist, business, student, family reunification, work permits, and long-term residency. We've maintained a 98% approval rate through meticulous preparation.</p>
+            <blockquote class="service-pullquote">A visa is rarely granted to the person who applies — only to the file they submit.</blockquote>
             <div class="process-steps">
               <div class="process-step">
                 <div class="step-num">1</div>
@@ -408,9 +501,12 @@
             <div class="visual-icon"><i class="fas fa-id-card"></i></div>
           </div>
           <div class="service-info reveal reveal-delay-1">
-            <span class="tag">Immigration</span>
-            <h2>Citizenship Application Support</h2>
+            <span class="chapter-num">— V —</span>
+            <span class="tag">Citizenship</span>
+            <h2>A Second Passport</h2>
+            <em class="service-italic-sub">A lifelong decision, handled as one.</em>
             <p>Obtaining citizenship is one of the most significant decisions in a person's life. Our immigration specialists provide end-to-end guidance through the entire naturalisation process.</p>
+            <blockquote class="service-pullquote">Citizenship is not paperwork. It is the quiet rewriting of where one belongs.</blockquote>
             <ul class="features-list">
               <li>Citizenship eligibility assessment</li>
               <li>Naturalisation application preparation</li>
@@ -434,9 +530,12 @@
       <div class="container">
         <div class="service-layout">
           <div class="service-info reveal">
-            <span class="tag">Writing Services</span>
-            <h2>Personal Statement Writing</h2>
+            <span class="chapter-num">— VI —</span>
+            <span class="tag">The Written Word</span>
+            <h2>Personal Statements</h2>
+            <em class="service-italic-sub">Your story, composed in your own voice.</em>
             <p>A compelling personal statement can be the difference between acceptance and rejection. Our professional writers craft tailored, authentic statements that showcase your strengths, motivations, and goals.</p>
+            <blockquote class="service-pullquote">Admissions read thousands of applications. We write the one they remember.</blockquote>
             <ul class="features-list">
               <li>University and college admission statements</li>
               <li>Visa and immigration personal statements</li>
@@ -474,9 +573,12 @@
             <div class="visual-icon"><i class="fas fa-briefcase"></i></div>
           </div>
           <div class="service-info reveal reveal-delay-1">
+            <span class="chapter-num">— VII —</span>
             <span class="tag">Career</span>
-            <h2>Job Application Assistance</h2>
+            <h2>The Next Chair</h2>
+            <em class="service-italic-sub">From CV to corner office — one considered step at a time.</em>
             <p>Breaking into a new job market — especially in a foreign country — requires more than just a good CV. Our career consultants provide comprehensive support from crafting standout materials to interview preparation.</p>
+            <blockquote class="service-pullquote">A good role rarely finds you. It is found — precisely, patiently — on your behalf.</blockquote>
             <ul class="features-list">
               <li>Professional CV and résumé writing</li>
               <li>LinkedIn profile optimisation</li>
@@ -500,9 +602,12 @@
       <div class="container">
         <div class="service-layout">
           <div class="service-info reveal">
-            <span class="tag">Language Services</span>
-            <h2>Translation Services</h2>
+            <span class="chapter-num">— VIII —</span>
+            <span class="tag">Language</span>
+            <h2>Faithful Translation</h2>
+            <em class="service-italic-sub">Fifty languages, one standard of care.</em>
             <p>Accurate, certified translation is essential for legal documents, immigration files, academic records, and business contracts. Our professional translators deliver precise translations in 50+ language pairs — always on time.</p>
+            <blockquote class="service-pullquote">A translation is not a copy — it is a promise that nothing meaningful has been lost.</blockquote>
             <ul class="features-list">
               <li>Certified legal and official document translation</li>
               <li>Arabic ↔ English and 50+ other language pairs</li>
