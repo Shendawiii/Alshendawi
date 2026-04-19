@@ -4,7 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Alshendawi services: visa applications, import/export, car rental, apartment rental, citizenship support, personal statements, job applications, and certified translation in 50+ languages.">
-  <title>Services | Alshendawi — الشنداوي</title>
+  <meta name="theme-color" content="#0A1628">
+  <link rel="canonical" href="https://alshendawi.com/services.html">
+  <link rel="icon" type="image/svg+xml" href="Alshendawi_Logo.svg">
+  <link rel="apple-touch-icon" href="Alshendawi_Logo.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Alshendawi · الشنداوي">
+  <meta property="og:title" content="The Dossier · Eight quiet offerings, attended with care.">
+  <meta property="og:description" content="A private catalogue of the counsel we provide — from trade and residency to translation and the written word.">
+  <meta property="og:url" content="https://alshendawi.com/services.html">
+  <meta property="og:image" content="https://alshendawi.com/Alshendawi_Logo.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Dossier · Alshendawi">
+  <meta name="twitter:description" content="Eight quiet offerings, attended with care.">
+  <meta name="twitter:image" content="https://alshendawi.com/Alshendawi_Logo.svg">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org","@type":"ItemList","name":"Alshendawi Services",
+    "itemListElement":[
+      {"@type":"Service","position":1,"name":"Import & Export","areaServed":"Worldwide"},
+      {"@type":"Service","position":2,"name":"Car Rental","areaServed":"Worldwide"},
+      {"@type":"Service","position":3,"name":"Apartment Rental Assistance","areaServed":"Worldwide"},
+      {"@type":"Service","position":4,"name":"Visa Application","areaServed":"Worldwide"},
+      {"@type":"Service","position":5,"name":"Citizenship Support","areaServed":"Worldwide"},
+      {"@type":"Service","position":6,"name":"Personal Statement Writing","areaServed":"Worldwide"},
+      {"@type":"Service","position":7,"name":"Job Application Assistance","areaServed":"Worldwide"},
+      {"@type":"Service","position":8,"name":"Certified Translation","areaServed":"Worldwide"}
+    ]
+  }
+  </script>
+  <title>The Dossier · Services | Alshendawi — الشنداوي</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -272,6 +301,17 @@
     /* Page-hero editorial refinements */
     .page-hero h1 { letter-spacing:-0.01em; }
     .page-hero p { font-family:var(--font-head); font-style:italic; font-weight:400; font-size:1.2rem; color:rgba(255,255,255,0.82); }
+
+    /* Accessibility — honour reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration:0.01ms !important; animation-iteration-count:1 !important;
+        transition-duration:0.01ms !important; scroll-behavior:auto !important;
+      }
+      .cursor-dot, .cursor-ring, .cursor-glow { display:none !important; }
+      body { cursor:auto !important; }
+      .service-visual:hover img { transform:none !important; }
+    }
   </style>
 </head>
 <body>

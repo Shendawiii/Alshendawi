@@ -4,7 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Contact Alshendawi for visa applications, translation, car rental, import/export, and more. Book a free consultation today.">
-  <title>Contact Us | Alshendawi — الشنداوي</title>
+  <meta name="theme-color" content="#0A1628">
+  <link rel="canonical" href="https://alshendawi.com/contact.html">
+  <link rel="icon" type="image/svg+xml" href="Alshendawi_Logo.svg">
+  <link rel="apple-touch-icon" href="Alshendawi_Logo.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Alshendawi · الشنداوي">
+  <meta property="og:title" content="Request a Consultation · Alshendawi">
+  <meta property="og:description" content="A quiet line, answered by name. Lance Aux Epines · St. George's · Grenada.">
+  <meta property="og:url" content="https://alshendawi.com/contact.html">
+  <meta property="og:image" content="https://alshendawi.com/Alshendawi_Logo.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Request a Consultation · Alshendawi">
+  <meta name="twitter:description" content="A quiet line, answered by name.">
+  <meta name="twitter:image" content="https://alshendawi.com/Alshendawi_Logo.svg">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org","@type":"ContactPage","url":"https://alshendawi.com/contact.html",
+    "mainEntity":{
+      "@type":"Organization","name":"Alshendawi",
+      "telephone":"+1-473-456-9909","email":"shendaex@gmail.com",
+      "address":{"@type":"PostalAddress","streetAddress":"Lance Aux Epines","addressLocality":"St. George's","addressCountry":"GD"},
+      "contactPoint":[
+        {"@type":"ContactPoint","telephone":"+44-7342-435696","contactType":"WhatsApp","availableLanguage":["en","ar"]}
+      ]
+    }
+  }
+  </script>
+  <title>Contact · Request a Consultation | Alshendawi — الشنداوي</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -262,6 +289,93 @@
       .footer-grid { grid-template-columns:1fr; }
       .social-bar { flex-wrap:wrap; }
     }
+
+    /* ============ PHASE 4 — CONCIERGE POLISH ============ */
+    /* Concierge 3-step stepper */
+    .concierge-stepper {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:0; margin:0 0 2.5rem; padding:0;
+      border-top:1px solid rgba(212,160,23,0.25);
+      border-bottom:1px solid rgba(212,160,23,0.25);
+      position:relative;
+    }
+    .concierge-stepper .step {
+      padding:1.1rem 1rem; display:flex; align-items:center; gap:0.75rem;
+      font-family:var(--font-head); font-style:italic;
+      position:relative; transition:background 0.3s ease, color 0.3s ease;
+    }
+    .concierge-stepper .step + .step { border-left:1px solid rgba(212,160,23,0.15); }
+    .concierge-stepper .step-num {
+      display:inline-flex; align-items:center; justify-content:center;
+      width:28px; height:28px; border-radius:50%;
+      border:1px solid var(--gold); color:var(--gold);
+      font-family:var(--font-head); font-style:italic; font-size:0.8rem;
+      letter-spacing:0.1em; background:var(--white);
+      transition:all 0.3s ease; flex-shrink:0;
+    }
+    .concierge-stepper .step-label {
+      display:flex; flex-direction:column; line-height:1.3;
+    }
+    .concierge-stepper .step-title {
+      font-size:0.95rem; color:var(--navy); font-weight:600;
+    }
+    .concierge-stepper .step-sub {
+      font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase;
+      color:var(--gray-600); font-style:normal;
+      font-family:var(--font-body); font-weight:500;
+    }
+    .concierge-stepper .step.active .step-num { background:var(--gold); color:var(--navy); box-shadow:0 0 0 4px rgba(212,160,23,0.15); }
+    .concierge-stepper .step.done .step-num { background:var(--navy); color:var(--gold); border-color:var(--navy); }
+    .concierge-stepper .step.done .step-num::before { content:'\f00c'; font-family:'Font Awesome 6 Free'; font-weight:900; font-size:0.7rem; }
+    .concierge-stepper .step.done .step-num span { display:none; }
+    @media (max-width:640px) {
+      .concierge-stepper { grid-template-columns:1fr; }
+      .concierge-stepper .step + .step { border-left:none; border-top:1px solid rgba(212,160,23,0.15); }
+      .concierge-stepper .step-sub { display:none; }
+    }
+
+    /* Decorative gold map pin over iframe */
+    .map-placeholder { position:relative; }
+    .map-pin {
+      position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-100%);
+      z-index:5; pointer-events:none;
+      animation: mapPinBob 2.8s ease-in-out infinite;
+    }
+    .map-pin svg { width:44px; height:auto; filter:drop-shadow(0 6px 14px rgba(10,22,40,0.4)); }
+    .map-pin::after {
+      content:''; position:absolute; left:50%; bottom:-4px;
+      width:18px; height:6px; transform:translateX(-50%);
+      background:radial-gradient(ellipse, rgba(10,22,40,0.35), transparent 70%);
+      animation: mapPinShadow 2.8s ease-in-out infinite;
+    }
+    @keyframes mapPinBob {
+      0%, 100% { transform:translate(-50%,-100%); }
+      50%      { transform:translate(-50%,calc(-100% - 6px)); }
+    }
+    @keyframes mapPinShadow {
+      0%, 100% { opacity:0.6; transform:translateX(-50%) scaleX(1); }
+      50%      { opacity:0.35; transform:translateX(-50%) scaleX(0.75); }
+    }
+    .map-caption {
+      position:absolute; left:50%; bottom:1rem; transform:translateX(-50%);
+      z-index:5; pointer-events:none;
+      background:var(--white); padding:0.5rem 1rem; border-radius:50px;
+      box-shadow:0 6px 20px rgba(10,22,40,0.18);
+      font-family:var(--font-head); font-style:italic; font-size:0.85rem;
+      color:var(--navy); white-space:nowrap; letter-spacing:0.01em;
+      border:1px solid rgba(212,160,23,0.3);
+    }
+    .map-caption::before { content:'◆'; color:var(--gold); margin-right:0.5rem; font-style:normal; }
+
+    /* Accessibility — honour reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration:0.01ms !important; animation-iteration-count:1 !important;
+        transition-duration:0.01ms !important; scroll-behavior:auto !important;
+      }
+      .map-pin, .map-pin::after { animation:none !important; }
+    }
   </style>
 </head>
 <body>
@@ -374,13 +488,28 @@
               <a href="#" class="social-btn"><i class="fab fa-instagram"></i> Instagram</a>
             </div>
 
-            <div class="map-placeholder" style="padding:0;overflow:hidden;">
+            <div class="map-placeholder" style="padding:0;overflow:hidden;position:relative;">
               <iframe
                 src="https://www.google.com/maps?q=Lance+Aux+Epines,+St+George's,+Grenada&output=embed"
                 width="100%" height="100%"
                 style="border:0;min-height:240px;"
                 loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                 title="Alshendawi — Lance Aux Epines, Grenada"></iframe>
+              <div class="map-pin" aria-hidden="true">
+                <svg viewBox="0 0 32 44" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="pinGrad" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0%" stop-color="#e8c030"/>
+                      <stop offset="100%" stop-color="#b08514"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M16 0C7.2 0 0 7.2 0 16c0 11 16 28 16 28s16-17 16-28C32 7.2 24.8 0 16 0z"
+                        fill="url(#pinGrad)" stroke="#0A1628" stroke-width="1.2"/>
+                  <circle cx="16" cy="16" r="5.5" fill="#0A1628"/>
+                  <circle cx="16" cy="16" r="2.2" fill="#e8c030"/>
+                </svg>
+              </div>
+              <div class="map-caption">Alshendawi · Lance Aux Epines</div>
             </div>
           </div>
 
@@ -388,12 +517,36 @@
           <div class="reveal reveal-delay-1">
             <div class="form-card">
               <div id="formContent">
-                <h2>Send Us a Message</h2>
-                <p>Fill in the form below and a specialist will contact you within 2 hours.</p>
+                <h2>Request a Consultation</h2>
+                <p>A specialist will reply — by name, in your language — within two business hours.</p>
+
+                <div class="concierge-stepper" id="conciergeStepper" role="list" aria-label="Consultation request · three steps">
+                  <div class="step active" data-step="1" role="listitem">
+                    <span class="step-num"><span>I</span></span>
+                    <span class="step-label">
+                      <span class="step-sub">Step I</span>
+                      <span class="step-title">About You</span>
+                    </span>
+                  </div>
+                  <div class="step" data-step="2" role="listitem">
+                    <span class="step-num"><span>II</span></span>
+                    <span class="step-label">
+                      <span class="step-sub">Step II</span>
+                      <span class="step-title">The Matter</span>
+                    </span>
+                  </div>
+                  <div class="step" data-step="3" role="listitem">
+                    <span class="step-num"><span>III</span></span>
+                    <span class="step-label">
+                      <span class="step-sub">Step III</span>
+                      <span class="step-title">Review &amp; Send</span>
+                    </span>
+                  </div>
+                </div>
 
                 <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
                   <!-- Web3Forms: register shendaex@gmail.com at https://web3forms.com/#start, paste the access key below -->
-                  <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                  <input type="hidden" name="access_key" value="36633869-38f3-4935-bea7-b08e6e539904">
                   <input type="hidden" name="subject" value="New Enquiry — Alshendawi Concierge">
                   <input type="hidden" name="from_name" value="Alshendawi Website">
                   <input type="hidden" name="redirect" value="false">
@@ -616,6 +769,40 @@
         field.addEventListener('blur', () => validateField(field));
         field.addEventListener('input', () => { if (field.classList.contains('error')) validateField(field); });
       });
+
+      // Concierge stepper progression
+      const stepper = document.getElementById('conciergeStepper');
+      if (stepper) {
+        const steps = stepper.querySelectorAll('.step');
+        const firstName = document.getElementById('firstName');
+        const lastName  = document.getElementById('lastName');
+        const emailEl   = document.getElementById('email');
+        const serviceEl = document.getElementById('service');
+        const messageEl = document.getElementById('message');
+        const consentEl = document.getElementById('consent');
+
+        const setState = (idx, state) => {
+          const el = steps[idx]; if (!el) return;
+          el.classList.remove('active','done');
+          if (state) el.classList.add(state);
+        };
+
+        const updateStepper = () => {
+          const step1Done = firstName.value.trim() && lastName.value.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim());
+          const step2Done = serviceEl.value && messageEl.value.trim().length > 0;
+          const step3Done = step1Done && step2Done && consentEl.checked;
+
+          setState(0, step1Done ? 'done' : 'active');
+          setState(1, step2Done ? 'done' : (step1Done ? 'active' : null));
+          setState(2, step3Done ? 'done' : (step1Done && step2Done ? 'active' : null));
+        };
+
+        [firstName, lastName, emailEl, serviceEl, messageEl, consentEl].forEach(el => {
+          el.addEventListener('input', updateStepper);
+          el.addEventListener('change', updateStepper);
+        });
+        updateStepper();
+      }
 
       form.addEventListener('submit', e => {
         e.preventDefault();

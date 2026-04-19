@@ -5,9 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Alshendawi — Your trusted global partner for visa applications, import/export, car rental, apartment rental, citizenship support, personal statements, job applications, and translation services.">
   <meta name="keywords" content="visa application services, import export company, car rental, apartment rental, citizenship application, personal statement writing, job application help, translation services, Alshendawi, الشنداوي">
-  <meta property="og:title" content="Alshendawi | الشنداوي — Global Services">
-  <meta property="og:description" content="Your trusted partner for global services — visas, immigration, rentals, translation, and more.">
-  <title>Alshendawi | الشنداوي — Your Global Services Partner</title>
+  <meta name="theme-color" content="#0A1628">
+  <meta name="author" content="Alshendawi">
+  <link rel="canonical" href="https://alshendawi.com/">
+  <link rel="icon" type="image/svg+xml" href="Alshendawi_Logo.svg">
+  <link rel="apple-touch-icon" href="Alshendawi_Logo.svg">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Alshendawi · الشنداوي">
+  <meta property="og:title" content="Alshendawi — A private passage to the world.">
+  <meta property="og:description" content="Fifteen years of quiet counsel on visas, citizenship, translation, and global logistics — from Lance Aux Epines, Grenada.">
+  <meta property="og:url" content="https://alshendawi.com/">
+  <meta property="og:image" content="https://alshendawi.com/Alshendawi_Logo.svg">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="ar_EG">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Alshendawi — A private passage to the world.">
+  <meta name="twitter:description" content="Fifteen years of quiet counsel on visas, citizenship, translation, and global logistics.">
+  <meta name="twitter:image" content="https://alshendawi.com/Alshendawi_Logo.svg">
+  <title>Alshendawi | الشنداوي — A private passage to the world</title>
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Alshendawi",
+    "alternateName": "الشنداوي",
+    "url": "https://alshendawi.com/",
+    "logo": "https://alshendawi.com/Alshendawi_Logo.svg",
+    "image": "https://alshendawi.com/Alshendawi_Logo.svg",
+    "description": "International concierge counsel on visas, citizenship, translation, import/export, and global logistics. Serving 40+ nations since 2010.",
+    "foundingDate": "2010",
+    "founder": { "@type": "Person", "name": "Mohamed Nasr Alshendawi" },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Lance Aux Epines",
+      "addressLocality": "St. George's",
+      "addressCountry": "GD"
+    },
+    "telephone": "+1-473-456-9909",
+    "email": "shendaex@gmail.com",
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "telephone": "+44-7342-435696",
+      "contactType": "customer service",
+      "availableLanguage": ["en","ar","fr"]
+    }],
+    "areaServed": "Worldwide",
+    "priceRange": "$$$"
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1095,6 +1143,17 @@
     }
     .hero-eyebrow::before {
       content: ''; width: 32px; height: 1px; background: var(--gold);
+    }
+
+    /* Accessibility — honour reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration:0.01ms !important; animation-iteration-count:1 !important;
+        transition-duration:0.01ms !important; scroll-behavior:auto !important;
+      }
+      .cursor-dot, .cursor-ring, .cursor-glow { display:none !important; }
+      .clientele-track { animation:none !important; }
+      body { cursor:auto !important; }
     }
   </style>
 </head>
