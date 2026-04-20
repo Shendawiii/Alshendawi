@@ -1,0 +1,77 @@
+[
+  {
+    "q": "What is the capital city of Australia?",
+    "correct": "Canberra",
+    "canonical": "canberra"
+  },
+  {
+    "q": "Which planet in our solar system has the most moons?",
+    "correct": "Saturn",
+    "canonical": "saturn"
+  },
+  {
+    "q": "In what year did World War II end?",
+    "correct": "1945",
+    "canonical": "1945"
+  },
+  {
+    "q": "What is the chemical symbol for gold?",
+    "correct": "Au",
+    "canonical": "au"
+  },
+  {
+    "q": "Who painted the Mona Lisa?",
+    "correct": "Leonardo da Vinci",
+    "canonical": "leonardo da vinci"
+  },
+  {
+    "q": "What is the largest ocean on Earth?",
+    "correct": "Pacific Ocean",
+    "canonical": "pacific"
+  },
+  {
+    "q": "Which element has the atomic number 1?",
+    "correct": "Hydrogen",
+    "canonical": "hydrogen"
+  },
+  {
+    "q": "What is the longest river in the world?",
+    "correct": "Nile",
+    "canonical": "nile"
+  },
+  {
+    "q": "Which country gifted the Statue of Liberty to the United States?",
+    "correct": "France",
+    "canonical": "france"
+  },
+  {
+    "q": "What is the smallest prime number?",
+    "correct": "2",
+    "canonical": "2"
+  },
+  {
+    "q": "Who wrote the play 'Romeo and Juliet'?",
+    "correct": "William Shakespeare",
+    "canonical": "shakespeare"
+  },
+  {
+    "q": "What is the hardest natural substance on Earth?",
+    "correct": "Diamond",
+    "canonical": "diamond"
+  },
+  {
+    "q": "Which animal is known as the King of the Jungle?",
+    "correct": "Lion",
+    "canonical": "lion"
+  },
+  {
+    "q": "What language has the most native speakers in the world?",
+    "correct": "Mandarin Chinese",
+    "canonical": "mandarin"
+  },
+  {
+    "q": "What is the tallest mountain in the world?",
+    "correct": "Mount Everest",
+    "canonical": "everest"
+  }
+]
