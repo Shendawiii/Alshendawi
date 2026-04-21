@@ -1,24 +1,24 @@
 /* BRAINWAVE — Minimal clean styling */
 
 :root {
-  --navy: #1B2A4A;
-  --blue: #2E75B6;
-  --lblue: #BDD7EE;
-  --vlblue: #DEEAF1;
-  --bg: #0F1828;
-  --card: #1F2F4D;
-  --text: #F0F4FA;
-  --muted: #8AA0C4;
-  --green: #2ECC71;
-  --red: #E74C3C;
-  --yellow: #F1C40F;
+  --navy: #0A1628;
+  --blue: #C9A66B;       /* gold (primary accent) */
+  --lblue: #E8D9B8;      /* cream */
+  --vlblue: #F5EDD9;     /* pale cream */
+  --bg: #0A1628;         /* deep navy */
+  --card: #13223D;       /* navy card */
+  --text: #F5EDD9;       /* cream text */
+  --muted: #8A9BB5;      /* muted slate */
+  --green: #7FB77E;      /* muted sage */
+  --red: #C87373;        /* muted rust */
+  --yellow: #C9A66B;     /* gold (replaces bright yellow) */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: linear-gradient(135deg, var(--bg), #1a2a45);
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  background: linear-gradient(135deg, var(--bg), #13223D);
   color: var(--text);
   min-height: 100vh;
   display: flex;
@@ -106,7 +106,7 @@ button {
 }
 button:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(46, 117, 182, 0.5);
+  box-shadow: 0 6px 20px rgba(201, 166, 107, 0.45);
 }
 button:disabled {
   opacity: 0.4;
@@ -132,7 +132,7 @@ button.ghost {
 }
 
 .room-info {
-  background: rgba(46, 117, 182, 0.15);
+  background: rgba(201, 166, 107, 0.12);
   border: 1px solid var(--blue);
   border-radius: 10px;
   padding: 14px;
@@ -248,7 +248,7 @@ button.ghost {
 .result-banner.bravo {
   color: var(--green);
   border-color: var(--green);
-  text-shadow: 0 0 20px rgba(46, 204, 113, 0.5);
+  text-shadow: 0 0 20px rgba(127, 183, 126, 0.45);
 }
 .result-banner.miss {
   color: var(--red);
@@ -294,7 +294,7 @@ button.ghost {
 }
 
 .error {
-  background: rgba(231, 76, 60, 0.15);
+  background: rgba(200, 115, 115, 0.15);
   border: 1px solid var(--red);
   color: var(--red);
   padding: 10px;
