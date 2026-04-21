@@ -59,7 +59,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Cairo:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
@@ -168,11 +168,17 @@
       z-index: 1000;
       padding: 1.25rem 0;
       transition: var(--transition);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-12px);
     }
     #navbar.scrolled {
       background: var(--navy);
       padding: 0.85rem 0;
       box-shadow: var(--shadow-lg);
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
     }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
@@ -1145,6 +1151,240 @@
       content: ''; width: 32px; height: 1px; background: var(--gold);
     }
 
+    /* ── Cinematic Hero v2 — video bg + glassmorphism ───────────────── */
+    :root {
+      --font-display: 'Instrument Serif', 'Playfair Display', serif;
+      --font-body: 'Inter', 'DM Sans', system-ui, sans-serif;
+    }
+
+    #hero-cinema {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      background: #0A1628;
+      display: flex;
+      flex-direction: column;
+    }
+    #hero-cinema .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    #hero-cinema .hero-veil {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        radial-gradient(ellipse at center, rgba(10,22,40,0.35) 0%, rgba(10,22,40,0.75) 100%),
+        linear-gradient(180deg, rgba(10,22,40,0.55) 0%, rgba(10,22,40,0.35) 40%, rgba(10,22,40,0.8) 100%);
+      pointer-events: none;
+    }
+
+    /* Glass nav (floats inside cinema hero) */
+    #hero-cinema .cine-nav {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 2rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    #hero-cinema .cine-logo {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      letter-spacing: -0.01em;
+      color: #fff;
+      text-decoration: none;
+      line-height: 1;
+    }
+    #hero-cinema .cine-logo sup {
+      font-size: 0.6rem;
+      margin-left: 2px;
+      color: var(--gold);
+      vertical-align: super;
+    }
+    #hero-cinema .cine-logo .ar {
+      display: block;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      opacity: 0.75;
+      margin-top: 2px;
+    }
+    #hero-cinema .cine-links {
+      display: none;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    @media (min-width: 768px) {
+      #hero-cinema .cine-links { display: flex; }
+    }
+    #hero-cinema .cine-links a {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.3s ease;
+    }
+    #hero-cinema .cine-links a:hover,
+    #hero-cinema .cine-links a.active {
+      color: #fff;
+    }
+
+    .liquid-glass {
+      position: relative;
+      background: rgba(255,255,255,0.01);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: none;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.12);
+      overflow: hidden;
+      color: #fff;
+      font-family: var(--font-body);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .liquid-glass::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(180deg,
+        rgba(201,162,39,0.55) 0%, rgba(255,255,255,0.18) 20%,
+        rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+        rgba(255,255,255,0.18) 80%, rgba(201,162,39,0.55) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      pointer-events: none;
+    }
+    .liquid-glass:hover {
+      transform: scale(1.03);
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.18), 0 8px 32px rgba(201,162,39,0.18);
+    }
+    .glass-pill { border-radius: 999px; padding: 0.625rem 1.5rem; font-size: 0.875rem; }
+    .glass-pill-lg { border-radius: 999px; padding: 1.1rem 3rem; font-size: 1rem; letter-spacing: 0.04em; }
+
+    /* Hero body */
+    #hero-cinema .cine-body {
+      position: relative;
+      z-index: 5;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 5rem 1.5rem 8rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    #hero-cinema .cine-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.75rem;
+      opacity: 0.9;
+    }
+    #hero-cinema .cine-title {
+      font-family: var(--font-display);
+      font-weight: 400;
+      color: #fff;
+      font-size: clamp(2.75rem, 8vw, 7.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.025em;
+      max-width: 1100px;
+      margin: 0;
+    }
+    #hero-cinema .cine-title em {
+      font-style: normal;
+      color: rgba(255,255,255,0.45);
+    }
+    #hero-cinema .cine-title em.gold {
+      color: var(--gold);
+      opacity: 0.85;
+    }
+    #hero-cinema .cine-sub {
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 1.6vw, 1.125rem);
+      color: rgba(255,255,255,0.68);
+      line-height: 1.7;
+      max-width: 640px;
+      margin-top: 2rem;
+    }
+    #hero-cinema .cine-cta-row {
+      margin-top: 3rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #hero-cinema .cine-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 6;
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    #hero-cinema .cine-scroll::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(180deg, var(--gold), transparent);
+      animation: scrollLine 2.2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* Fade-rise animations */
+    @keyframes fade-rise {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-rise        { animation: fade-rise 0.9s ease-out both; }
+    .animate-fade-rise-delay  { animation: fade-rise 0.9s ease-out 0.2s both; }
+    .animate-fade-rise-delay-2{ animation: fade-rise 0.9s ease-out 0.45s both; }
+    .animate-fade-rise-delay-3{ animation: fade-rise 0.9s ease-out 0.7s both; }
+
+    /* Mobile tidy */
+    @media (max-width: 767px) {
+      #hero-cinema .cine-nav { padding: 1rem 1.25rem; }
+      #hero-cinema .cine-logo { font-size: 1.5rem; }
+      #hero-cinema .cine-body { padding: 3rem 1.25rem 6rem; }
+      .glass-pill-lg { padding: 0.95rem 2.25rem; }
+    }
+
     /* Accessibility — honour reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -1154,6 +1394,8 @@
       .cursor-dot, .cursor-ring, .cursor-glow { display:none !important; }
       .clientele-track { animation:none !important; }
       body { cursor:auto !important; }
+      #hero-cinema .hero-video { display:none !important; }
+      #hero-cinema .cine-scroll::after { animation:none !important; }
     }
   </style>
 </head>
@@ -1199,34 +1441,52 @@
 
   <main>
 
-    <!-- ── Hero ── -->
-    <section id="hero">
+    <!-- ── Hero (Cinematic v2) ── -->
+    <section id="hero-cinema">
+      <video class="hero-video" autoplay loop muted playsinline preload="auto" poster="Alshendawi_Logo.svg">
+        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4" type="video/mp4">
+      </video>
+      <div class="hero-veil"></div>
+
+      <nav class="cine-nav animate-fade-rise">
+        <a href="index.html" class="cine-logo">
+          Alshendawi<sup>®</sup>
+          <span class="ar">الشنداوي</span>
+        </a>
+        <ul class="cine-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">The House</a></li>
+          <li><a href="services.html">The Dossier</a></li>
+          <li><a href="contact.html">Reach Us</a></li>
+        </ul>
+        <a href="contact.html" class="liquid-glass glass-pill">Begin Journey</a>
+      </nav>
+
+      <div class="cine-body">
+        <div class="cine-eyebrow animate-fade-rise">Est. MMX · Grenada · 40+ Nations</div>
+        <h1 class="cine-title animate-fade-rise-delay">
+          Where <em class="gold">journeys</em> rise
+          <em> through the silence.</em>
+        </h1>
+        <p class="cine-sub animate-fade-rise-delay-2">
+          For fifteen years, Alshendawi has been a quiet, trusted hand for those whose matters demand precision, patience, and discretion — visas, citizenship, translation, and safe passage, attended with care.
+        </p>
+        <div class="cine-cta-row animate-fade-rise-delay-3">
+          <a href="contact.html" class="liquid-glass glass-pill-lg">Begin Journey</a>
+          <a href="services.html" class="liquid-glass glass-pill-lg" style="background:transparent;">The Offerings</a>
+        </div>
+      </div>
+
+      <div class="cine-scroll animate-fade-rise-delay-3">Scroll</div>
+    </section>
+
+    <!-- ── Hero (legacy retained, hidden) ── -->
+    <section id="hero" style="display:none;" aria-hidden="true">
       <canvas id="hero-canvas"></canvas>
       <div class="hero-bg-shapes"></div>
       <div class="container">
         <div class="hero-content">
           <div class="hero-left">
-            <div class="hero-eyebrow">Est. MMX · Grenada</div>
-            <h1 class="hero-title">
-              A private passage
-              <span class="editorial shimmer-gold">to the world.</span>
-            </h1>
-            <div class="hero-typing-row">
-              <span>Counsel on</span>
-              <span class="hero-typing-text"></span>
-            </div>
-            <p class="hero-desc">
-              For fifteen years, Alshendawi has been a quiet, trusted partner for those navigating visas, citizenship, translation, and global logistics — handled with the care and discretion that matter most.
-            </p>
-            <div class="hero-ctas">
-              <a href="contact.html" class="btn btn-primary">Request a Consultation <i class="fas fa-arrow-right"></i></a>
-              <a href="services.html" class="btn btn-outline">Our Offerings</a>
-            </div>
-            <div class="hero-trust">
-              <div class="hero-trust-item"><i class="fas fa-shield-halved"></i> Fully Licensed</div>
-              <div class="hero-trust-item"><i class="fas fa-user-tie"></i> Discreet Counsel</div>
-              <div class="hero-trust-item"><i class="fas fa-globe"></i> 40+ Nations</div>
-            </div>
           </div>
           <div class="hero-right">
             <div class="logo-showcase">
