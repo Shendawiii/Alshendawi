@@ -1241,6 +1241,56 @@
       color: #fff;
     }
 
+    /* ── Games dropdown ── */
+    #hero-cinema .games-dropdown {
+      position: relative;
+    }
+    #hero-cinema .games-toggle {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    #hero-cinema .games-arrow {
+      font-size: 0.75rem;
+      transition: transform 0.25s ease;
+    }
+    #hero-cinema .games-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10,22,40,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 0.5rem 0;
+      min-width: 160px;
+      list-style: none;
+      margin: 0;
+      z-index: 100;
+    }
+    #hero-cinema .games-dropdown:hover .games-menu,
+    #hero-cinema .games-dropdown:focus-within .games-menu {
+      display: flex;
+    }
+    #hero-cinema .games-dropdown:hover .games-arrow {
+      transform: rotate(180deg);
+    }
+    #hero-cinema .games-menu li a {
+      display: block;
+      padding: 0.5rem 1.25rem;
+      white-space: nowrap;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7) !important;
+    }
+    #hero-cinema .games-menu li a:hover {
+      color: var(--gold, #c9a96e) !important;
+      background: rgba(255,255,255,0.04);
+    }
     .liquid-glass {
       position: relative;
       background: rgba(255,255,255,0.01);
@@ -1458,6 +1508,13 @@
           <li><a href="about.html">The House</a></li>
           <li><a href="services.html">The Dossier</a></li>
           <li><a href="contact.html">Reach Us</a></li>
+          <li class="games-dropdown">
+            <a href="#" class="games-toggle">Games <span class="games-arrow">▾</span></a>
+            <ul class="games-menu">
+              <li><a href="brainwave/" target="_blank">🎮 Brainwave</a></li>
+              <li><a href="https://afterlight-black.vercel.app/" target="_blank">🌘 Afterlight</a></li>
+            </ul>
+          </li>
         </ul>
         <a href="contact.html" class="liquid-glass glass-pill">Begin Journey</a>
       </nav>
@@ -1912,6 +1969,7 @@
             <li><a href="services.html">Services</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="brainwave/" style="color:var(--gold);">🎮 BRAINWAVE</a></li>
+              <li><a href="https://afterlight-black.vercel.app/" target="_blank" style="color:var(--gold);">🌘 AFTERLIGHT</a></li>
           </ul>
         </div>
         <div class="footer-col">
